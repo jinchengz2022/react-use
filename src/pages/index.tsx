@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react'
 
-import { useIdle } from './hooks/useIdle'
+import useLocation from './hooks/useLocation'
 
 export default function Home() {
-  const active = useIdle();
+  const active = useLocation();
 
   console.log(active);
-  useEffect(() => {
-  console.log(active);
 
-  }, [active])
 
   
   
