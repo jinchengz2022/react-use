@@ -1,6 +1,6 @@
 import React, { useRef, useCallback, useState } from "react";
 
-import { useFirstMountState } from "./useFirstMountState";
+import { useMountState } from "./useMountState";
 
 export const useAsyncFn = (
   fn: (...args: any) => Promise<any>,
@@ -8,7 +8,7 @@ export const useAsyncFn = (
   initialState = { loading: false }
 ) => {
   const lastCallId = useRef(0);
-  const isMounted = useFirstMountState();
+  const isMounted = useMountState();
   const [state, update] = useState<Record<string, any>>(initialState);
 
   const callback = useCallback((...args: Parameters<any>): ReturnType<any> => {
@@ -20,14 +20,14 @@ export const useAsyncFn = (
 
     return fn(...args).then(
       (val) => {
-        isMounted &&
+        isMounted() &&
           callId === lastCallId.current &&
           update({ val, loading: false });
 
         return val;
       },
       (err) => {
-        isMounted &&
+        isMounted() &&
           callId === lastCallId.current &&
           update({ err, loading: false });
 
