@@ -1,17 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from "react";
 
-import useLocation from './hooks/useLocation'
+import useLocation from "./hooks/useLocation";
+
+
 
 export default function Home() {
-  const active = useLocation();
-
-  console.log(active);
-
-
   
-  
-  return (
-    <>1
-    </>
-  )
+
+
+
+  return <div>
+   
+  </div>;
 }
